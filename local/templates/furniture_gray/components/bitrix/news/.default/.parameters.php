@@ -28,8 +28,7 @@ $arTemplateParameters = array(
 	"CANONICAL_ID" => Array(
 		"NAME" => GetMessage("CANONICAL_ID"),
 		"TYPE" => "STRING",
-		"DEFAULT" => "0",
-		),
+	),
 );
 
 if ($arCurrentValues["USE_SHARE"] == "Y")

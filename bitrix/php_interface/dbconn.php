@@ -1,4 +1,4 @@
-<?
+v<?
 define("BX_USE_MYSQLI", true);
 define("DBPersistent", false);
 $DBType = "mysql";
@@ -19,7 +19,7 @@ define("CACHED_b_site_template", 3600);
 define("CACHED_b_event", 3600);
 define("CACHED_b_agent", 3660);
 define("CACHED_menu", 3600);
-
+define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"]."/log.txt");
 define("BX_FILE_PERMISSIONS", 0644);
 define("BX_DIR_PERMISSIONS", 0755);
 @umask(~(BX_FILE_PERMISSIONS|BX_DIR_PERMISSIONS)&0777);

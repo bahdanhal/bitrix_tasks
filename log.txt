@@ -1,0 +1,60 @@
+Host: localhost
+Date: 2021-02-11 15:38:02
+Module: 
+NULL
+    include < CComponentUtil::GetComponentProps < CComponentParamsManager::GetComponentProperties < require
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\classes\general\component_util.php:478
+	D:\Programs\XAMPP\htdocs\bitrix\modules\fileman\classes\general\component_params_manager.php:135
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\public\component_props2.php:119
+	D:\Programs\XAMPP\htdocs\bitrix\admin\component_props.php:1
+----------
+Host: localhost
+Date: 2021-02-11 15:45:40
+Module: 
+NULL
+    include < CComponentUtil::GetComponentProps < CComponentParamsManager::GetComponentProperties < require
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\classes\general\component_util.php:478
+	D:\Programs\XAMPP\htdocs\bitrix\modules\fileman\classes\general\component_params_manager.php:135
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\public\component_props2.php:119
+	D:\Programs\XAMPP\htdocs\bitrix\admin\component_props.php:1
+----------
+Host: localhost
+Date: 2021-02-11 15:46:16
+Module: 
+NULL
+    include < CComponentUtil::GetComponentProps < CComponentParamsManager::GetComponentProperties < require
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\classes\general\component_util.php:478
+	D:\Programs\XAMPP\htdocs\bitrix\modules\fileman\classes\general\component_params_manager.php:135
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\public\component_props2.php:119
+	D:\Programs\XAMPP\htdocs\bitrix\admin\component_props.php:1
+----------
+Host: localhost
+Date: 2021-02-11 15:51:17
+Module: 
+Настройки компонента
+    include < CComponentUtil::GetComponentProps < CComponentParamsManager::GetComponentProperties < require
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\classes\general\component_util.php:478
+	D:\Programs\XAMPP\htdocs\bitrix\modules\fileman\classes\general\component_params_manager.php:135
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\public\component_props2.php:119
+	D:\Programs\XAMPP\htdocs\bitrix\admin\component_props.php:1
+----------
+Host: localhost
+Date: 2021-02-11 15:51:54
+Module: 
+Настройки компонента
+    include < CComponentUtil::GetComponentProps < CComponentParamsManager::GetComponentProperties < require
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\classes\general\component_util.php:478
+	D:\Programs\XAMPP\htdocs\bitrix\modules\fileman\classes\general\component_params_manager.php:135
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\public\component_props2.php:119
+	D:\Programs\XAMPP\htdocs\bitrix\admin\component_props.php:1
+----------
+Host: localhost
+Date: 2021-02-11 15:52:06
+Module: 
+Настройки компонента
+    include < CComponentUtil::GetComponentProps < CComponentParamsManager::GetComponentProperties < require
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\classes\general\component_util.php:478
+	D:\Programs\XAMPP\htdocs\bitrix\modules\fileman\classes\general\component_params_manager.php:135
+	D:\Programs\XAMPP\htdocs\bitrix\modules\main\public\component_props2.php:119
+	D:\Programs\XAMPP\htdocs\bitrix\admin\component_props.php:1
+----------

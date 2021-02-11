@@ -1,9 +1,10 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
-if(!CModule::IncludeModule("iblock"))
+if(!CModule::IncludeModule("iblock")){
 	return;
-
+}
+AddMessage2Log(GetMessage("COMPONENT_SETTINGS"));
 $arComponentParameters = array(
 	"GROUPS" => array(
 		"IBLOCKS_SETTINGS" => array(
@@ -15,7 +16,6 @@ $arComponentParameters = array(
 			"NAME" => GetMessage("COMPONENT_SETTINGS"),
 		),
 	),
-	
 	"PARAMETERS" => array(
 
 		"CATALOG_IBLOCK_ID" => array(
@@ -34,21 +34,7 @@ $arComponentParameters = array(
 			"NAME" => GetMessage("NEWS_PROPERTY_ELEMENT_ID"),
 			"TYPE" => "STRING",
 		),
-		"TEMPLATE" => Array(
-			"PARENT" => "COMPONENT_SETTINGS",
-			"NAME" => GetMessage("TEMPLATE"),
-			"TYPE" => "STRING",
-		),
-		"CACHE_TYPE" => Array(
-			"PARENT" => "COMPONENT_SETTINGS",
-			"NAME" => GetMessage("CACHE_TYPE"),
-			"TYPE" => "LIST",
-			"VALUES" => array('AUTO_MANAGED' => GetMessage("AUTO_MANAGED"), 'AUTO' => GetMessage("AUTO"), 'NONE' => GetMessage("NONE")),
-	   ),
 		"CACHE_TIME"  => Array(
-			"PARENT" => "COMPONENT_SETTINGS",
-			"NAME" => GetMessage("CACHE_TIME"),
-			"TYPE" => "STRING",
 			"DEFAULT" => 36000000,
 		),
 	),

@@ -1,3 +1,0 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-    echo "AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-$this->IncludeComponentTemplate($componentPage);

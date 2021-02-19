@@ -29,9 +29,9 @@ $arComponentParameters = array(
 			"NAME" => GetMessage("NEWS_IBLOCK_ID"),
 			"TYPE" => "STRING",
 		),
-		"NEWS_PROPERTY_ELEMENT_ID" => Array(
+		"UF_NEWS_LINK_ID" => Array(
 			"PARENT" => "IBLOCKS_SETTINGS",
-			"NAME" => GetMessage("NEWS_PROPERTY_ELEMENT_ID"),
+			"NAME" => GetMessage("UF_NEWS_LINK_ID"),
 			"TYPE" => "STRING",
 		),
 		"CACHE_TIME"  => Array(

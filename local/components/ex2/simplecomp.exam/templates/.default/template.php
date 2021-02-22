@@ -8,6 +8,14 @@
                 <?php endif;?>
                 <?php $info = '<b>' . $firm['FIRM_NAME'] . '</b>';?>
                 <li> <?=$info;?></li>   
+                <?php print_r($firm['iii']);?> 
+                <?php foreach ($firm['iii'] as $iii):?>   
+                        <ul>
+                            <li> 
+                                <?php //print_r($firm['iii']);?> 
+                            </li>
+                        </ul>
+                <?php endforeach;?>
                 <?php foreach ($firm['ELEMENTS'] as $element):?>   
                         <ul>
                             <li> 

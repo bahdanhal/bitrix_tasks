@@ -28,9 +28,12 @@ class ClassifiedProduction extends CBitrixComponent
         $arElementSelect = ['IBLOCK_ID', 'ID', 'NAME', 'PROPERTY_PRICE', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_UF_FIRM'];
         $elementsResult = CIBlockElement::GetList([], $arElementFilter, false, false, $arElementSelect);
         while ($catalogElement = $elementsResult->Fetch()){
-            if($catalogElement['PROPERTY_UF_FIRM_VALUE']){
-                $result[$catalogElement['PROPERTY_UF_FIRM_VALUE']]['ELEMENTS'][] =  $catalogElement;
-            };
+            if(CIBlockElementRights::UserHasRightTo($catalogElement['IBLOCK_ID'], $catalogElement['ELEMENT_ID'], 'R')){;
+                if($catalogElement['PROPERTY_UF_FIRM_VALUE']){
+                    $result[$catalogElement['PROPERTY_UF_FIRM_VALUE']]['ELEMENTS'][] =  $catalogElement;
+                }
+                $result[$catalogElement['PROPERTY_UF_FIRM_VALUE']]['iii'][] = CIBlockElementRights::UserHasRightTo($catalogElement['IBLOCK_ID'], $catalogElement['ELEMENT_ID'], 'element_read', 4);
+            }
         }
 
         return $result;            
@@ -39,7 +42,7 @@ class ClassifiedProduction extends CBitrixComponent
     public function executeComponent()
     {
         $this->modulesCheck();
-        if($this->startResultCache()){
+        if($this->startResultCache(false, array($GLOBALS['USER']->GetGroups()))){
             $this->arResult = $this->result();
             $this->SetResultCacheKeys(['ELEMENTS_COUNT']);
             $this->IncludeComponentTemplate();

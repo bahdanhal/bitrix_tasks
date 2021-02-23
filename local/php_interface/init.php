@@ -1,6 +1,5 @@
 <?
-AddEventHandler("main", "OnProlog", function () {
-    addMessage2Log('aaaaa');
+AddEventHandler("main", "OnEpilog", function () {
     $GLOBALS['APPLICATION']->IncludeComponent(
         "ex2:metatags",
         "",

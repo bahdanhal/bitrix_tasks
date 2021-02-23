@@ -17,8 +17,8 @@ class Metatags extends CBitrixComponent
             $filter = array(
                 "NAME" => $GLOBALS['APPLICATION']->GetCurPage(),
             );
-            $this->arResult = Array("ELEMENT" => CIBlockElement::GetList(array(), $filter, false, array(), $select)->GetNext(), 'a' => 1);
-            $this->SetResultCacheKeys(Array("ELEMENT", "a"));
+            $this->arResult = Array("ELEMENT" => CIBlockElement::GetList(array(), $filter, false, array(), $select)->GetNext());
+            $this->SetResultCacheKeys(Array("ELEMENT"));
             $this->EndResultCache();
         }
         $result = $this->arResult['ELEMENT'];

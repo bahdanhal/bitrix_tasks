@@ -2,28 +2,26 @@
 	<div>
 		<h3> Элементов: <?=$arResult['ELEMENTS_COUNT'];?></h3>
 	    <ul>
-            <?php foreach ($arResult as $key => $news):?>   
-                <?php if ($key == 'ELEMENTS_COUNT'):?>
-                    <?php continue;?>
-                <?php endif;?>
-                <?php $info = '<b>' . $news['NEWS_NAME'] . '</b> - ' . $news['NEWS_DATE'] . ' (';?>
+            <?php foreach ($arResult['NEWS'] as $news):?>   
+                <?php $info = '<b>' . $news['NAME'] . '</b> - ' . $news['DATE_ACTIVE_FROM'] . ' (';?>
                 <?php $count = 0;?>
-
-                <?php foreach ($news['SECTION'] as $section):?>
+                <?php $sections = $arResult['NEWS_WITH_SECTIONS'][$news['ID']];?>
+                <?php foreach ($sections as $section):?>
                     <?php if($count == 0):?>
-                        <?php $info .= $section['NAME'];?>
+                        <?php $info .= $arResult['SECTIONS'][$section]['NAME'];?>
                     <?php else:?>
-                        <?php $info .= ', ' . $section['NAME'];?>;
+                        <?php $info .= ', ' . $arResult['SECTIONS'][$section]['NAME'];?>;
                     <?php endif;?>
                     <?php $count++;?>
                 <?php endforeach;?>
-
                 <?php $info .= ')';?>
+
                 <li> <?=$info;?></li>
                     <ul>
-                        <?php foreach ($news['ELEMENTS'] as $elem):?>
+                        <?php foreach ($arResult['NEWS_WITH_ELEMENTS'][$news['ID']] as $value):?>
+                            <?php $element = $arResult['ELEMENTS'][$value];?>
                             <li> 
-                                <?php echo $elem['NAME'] . ' - ' . $elem['PROPERTY_PRICE_VALUE'] . ' - ' . $elem['PROPERTY_MATERIAL_VALUE'] . ' - ' . $elem['PROPERTY_ARTNUMBER_VALUE'];?>
+                                <?php echo $element['NAME'] . ' - ' . $element['PROPERTY_PRICE_VALUE'] . ' - ' . $element['PROPERTY_MATERIAL_VALUE'] . ' - ' . $element['PROPERTY_ARTNUMBER_VALUE'];?>
                             </li>
                         <?php endforeach;?>
                     </ul>

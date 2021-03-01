@@ -15,23 +15,22 @@ class SimpleComp extends CBitrixComponent
         $arNewsFilter = ['IBLOCK_ID' => $this->arParams['NEWS_IBLOCK_ID']];
         $arNewsSelect = ['IBLOCK_ID', 'ID', 'NAME', 'DATE_ACTIVE_FROM'];
         $news = CIBlockElement::GetList([], $arNewsFilter, false, false, $arNewsSelect);
+
         while ($newsElement = $news->Fetch()){
 	        $arNewsID[] = $newsElement['ID'];
-            $result[$newsElement['ID']] = [
-                'NEWS_NAME' => $newsElement['NAME'], 
-                'NEWS_DATE' => $newsElement['DATE_ACTIVE_FROM'], 
-                'SECTION' => [], 'ELEMENTS' => []
-            ];
+            $result['NEWS'][$newsElement['ID']] = $newsElement;
         }
-
         $arCatalogFilter = ['IBLOCK_ID' => $this->arParams['CATALOG_IBLOCK_ID'], 'ACTIVE' => 'Y', 'UF_NEWS_LINK' => $arNewsID];
         $arCatalogSelect = ['IBLOCK_ID', 'ID', 'NAME', 'UF_NEWS_LINK'];
         $section = CIBlockSection::GetList([], $arCatalogFilter, false, $arCatalogSelect);
+
         while ($sectionElement = $section->Fetch()) {
             $arSectionID[] = $sectionElement['ID'];
             foreach ($sectionElement['UF_NEWS_LINK'] as $newsLink) {
-                $result[$newsLink]['SECTION'][$sectionElement['ID']] = $sectionElement;
+                $result['NEWS_WITH_SECTIONS'][$newsLink][] = $sectionElement['ID'];
             }
+            $result['SECTIONS'][$sectionElement['ID']] = $sectionElement;
+
         }
 
         $arElementFilter = ['IBLOCK_ID' => $this->arParams['CATALOG_IBLOCK_ID'], 'ACTIVE' => 'Y', 'SECTION_ID' => $arSectionID];
@@ -39,14 +38,17 @@ class SimpleComp extends CBitrixComponent
         $elementsResult = CIBlockElement::GetList([], $arElementFilter, false, false, $arElementSelect);
         $result['ELEMENTS_COUNT'] = $elementsResult->SelectedRowsCount();
         while ($catalogElement = $elementsResult->Fetch()){
-            foreach ($result as $key => $news) {
-                foreach ($news['SECTION'] as $currentSection) {
-                    if ($catalogElement['IBLOCK_SECTION_ID'] == $currentSection['ID']) {
-                        $result[$key]['ELEMENTS'][] =  $catalogElement;
-                    }
-                } 
+            $sectionsWithElements[$catalogElement['IBLOCK_SECTION_ID']][] = $catalogElement['ID'];
+            $result['ELEMENTS'][$catalogElement['ID']] = $catalogElement;
+        }
+
+        foreach ($result['NEWS_WITH_SECTIONS'] as $news => $sections) {
+            $result['NEWS_WITH_ELEMENTS'][$news] = [];
+            foreach($sections as $section){
+                $result['NEWS_WITH_ELEMENTS'][$news] = array_merge($result['NEWS_WITH_ELEMENTS'][$news], $sectionsWithElements[$section]);
             }
         }
+
         
         return $result;            
     }

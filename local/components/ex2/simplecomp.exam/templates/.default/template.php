@@ -1,4 +1,11 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+    <?$this->SetViewTarget('ex2-82');?>
+        <div style="color:red; margin: 34px 15px 35px 15px">
+            Минимальная: <?=$arResult['MIN_PRICE']?> 
+            <br>
+            Максимальная: <?=$arResult['MAX_PRICE']?>    
+        </div>
+    <?$this->EndViewTarget();?>
 	<div>
 		<h3> Элементов: <?=$arResult['ELEMENTS_COUNT'];?></h3>
 	    <ul>

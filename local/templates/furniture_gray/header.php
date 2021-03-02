@@ -112,6 +112,9 @@ $APPLICATION->IncludeFile(
 	)
 );?>
 				<div class="content-block">
+					<? $APPLICATION->ShowViewContent('ex2-82'); ?>
+				</div>
+				<div class="content-block">
 					<div class="content-block-inner">
 						<h3><?=GetMessage('CFT_NEWS')?></h3>
 <?
@@ -126,7 +129,7 @@ $APPLICATION->IncludeFile(
 				
 				<div class="content-block">
 					<div class="content-block-inner">
-						
+
 <?
 $APPLICATION->IncludeComponent("bitrix:search.form", "flat", Array(
 	"PAGE" => "#SITE_DIR#search/",

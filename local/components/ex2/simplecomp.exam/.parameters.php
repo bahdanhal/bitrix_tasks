@@ -16,7 +16,11 @@ $arComponentParameters = array(
 		),
 	),
 	"PARAMETERS" => array(
+		"LINK_TEMPLATE" => array(
+			"NAME" => GetMessage("LINK_TEMPLATE"),
+			"TYPE" => "STRING",
 
+		),
 		"CATALOG_IBLOCK_ID" => array(
 			"PARENT" => "IBLOCKS_SETTINGS",
 			"NAME" => GetMessage("CATALOG_IBLOCK_ID"),
@@ -31,6 +35,13 @@ $arComponentParameters = array(
 
 		"CACHE_TIME"  => Array(
 			"DEFAULT" => 36000000,
+		),
+
+		"CACHE_GROUPS" => array(
+			"PARENT" => "CACHE_SETTINGS",
+			"NAME" => GetMessage("CLASSIFIED_PRODUCTION_CACHE_GROUPS"),
+			"TYPE" => "CHECKBOX",
+			"DEFAULT" => "Y",
 		),
 	),
 );

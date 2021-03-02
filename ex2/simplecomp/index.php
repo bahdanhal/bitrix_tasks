@@ -9,7 +9,10 @@ $APPLICATION->SetTitle("simplecomp");
 		"CACHE_TYPE" => "A",
 		"CATALOG_IBLOCK_ID" => "2",
 		"FIRM_IBLOCK_ID" => "7",
-		"COMPONENT_TEMPLATE" => ".default"
+		"COMPONENT_TEMPLATE" => ".default",
+		"CACHE_FILTER" => "N",
+		"CACHE_GROUPS" => "Y",
+		"LINK_TEMPLATE" => "#SITE_DIR#/products/detail.php?ID=#ELEMENT_ID#"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

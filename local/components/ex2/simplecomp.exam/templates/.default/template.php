@@ -2,25 +2,19 @@
 	<div>
 		<h3> Разделов: <?=$arResult['ELEMENTS_COUNT'];?></h3>
 	    <ul>
-            <?php foreach ($arResult as $key => $firm):?>   
-                <?php if ($key == 'ELEMENTS_COUNT'):?>
-                    <?php continue;?>
-                <?php endif;?>
-                <?php $info = '<b>' . $firm['FIRM_NAME'] . '</b>';?>
+            <?php foreach ($arResult['ELEMENTS_BY_FIRMS'] as $firm => $elements):?>   
+                <?php $info = '<b>' . $arResult['FIRMS'][$firm]['FIRM_NAME'] . '</b>';?>
                 <li> <?=$info;?></li>   
-                <?php print_r($firm['iii']);?> 
-                <?php foreach ($firm['iii'] as $iii):?>   
+                <?php foreach ($elements as $element):?>   
                         <ul>
                             <li> 
-                                <?php //print_r($firm['iii']);?> 
+                                <a href="<?= $element['DETAIL_PAGE_URL']?>">
+                                    <?php echo $element['NAME'] . ' - ' . $element['PROPERTY_PRICE_VALUE'] 
+                                        . ' - ' . $element['PROPERTY_MATERIAL_VALUE'] . ' - ' . $element['PROPERTY_ARTNUMBER_VALUE'];
+                                    ?>
+                                </a>
                             </li>
-                        </ul>
-                <?php endforeach;?>
-                <?php foreach ($firm['ELEMENTS'] as $element):?>   
-                        <ul>
-                            <li> 
-                                <?php echo $element['NAME'] . ' - ' . $element['PROPERTY_PRICE_VALUE'] . ' - ' . $element['PROPERTY_MATERIAL_VALUE'] . ' - ' . $element['PROPERTY_ARTNUMBER_VALUE'];?>
-                            </li>
+                            
                         </ul>
                 <?php endforeach;?>
             <?php endforeach;?>

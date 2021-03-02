@@ -10,29 +10,42 @@ class ClassifiedProduction extends CBitrixComponent
 
         return true;
     }
+
+    private function getFirms()
+    {
+        $arFirmFilter = ['IBLOCK_ID' => $this->arParams['FIRM_IBLOCK_ID'], 
+            'CHECK_PERMISSIONS' => $this->arParams['CACHE_GROUPS']
+        ];
+        $arFirmSelect = ['IBLOCK_ID', 'ID', 'NAME'];
+        return CIBlockElement::GetList([], $arFirmFilter, false, false, $arFirmSelect);;
+    }
+
+    private function getElements()
+    {
+        $arElementFilter = ['IBLOCK_ID' => $this->arParams['CATALOG_IBLOCK_ID'], 
+            'ACTIVE' => 'Y', 
+            'UF_FIRM' => $arFirmID,
+            'CHECK_PERMISSIONS' => $this->arParams['CACHE_GROUPS']
+        ];
+        $arElementSelect = ['IBLOCK_ID', 'ID', 'NAME', 'PROPERTY_PRICE', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_UF_FIRM', 'DETAIL_PAGE_URL'];
+        return CIBlockElement::GetList([], $arElementFilter, false, false, $arElementSelect);
+    }
     private function result()
     {
-        $arFirmFilter = ['IBLOCK_ID' => $this->arParams['FIRM_IBLOCK_ID']];
-        $arFirmSelect = ['IBLOCK_ID', 'ID', 'NAME'];
-        $firmList = CIBlockElement::GetList([], $arFirmFilter, false, false, $arFirmSelect);
-        while ($firm = $firmList->Fetch()){
+        $firmList = $this->getFirms();
+        while ($firm = $firmList->GetNext()){
 	        $arFirmID[] = $firm['ID'];
-            $result[$firm['ID']] = [
+            $result['FIRMS'][$firm['ID']] = [
                 'FIRM_NAME' => $firm['NAME'], 
-                'ELEMENTS' => []
             ];
         }
         $result['ELEMENTS_COUNT'] = $firmList->SelectedRowsCount();
 
-        $arElementFilter = ['IBLOCK_ID' => $this->arParams['CATALOG_IBLOCK_ID'], 'ACTIVE' => 'Y', 'UF_FIRM' => $arFirmID];
-        $arElementSelect = ['IBLOCK_ID', 'ID', 'NAME', 'PROPERTY_PRICE', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_UF_FIRM'];
-        $elementsResult = CIBlockElement::GetList([], $arElementFilter, false, false, $arElementSelect);
-        while ($catalogElement = $elementsResult->Fetch()){
-            if(CIBlockElementRights::UserHasRightTo($catalogElement['IBLOCK_ID'], $catalogElement['ELEMENT_ID'], 'R')){;
-                if($catalogElement['PROPERTY_UF_FIRM_VALUE']){
-                    $result[$catalogElement['PROPERTY_UF_FIRM_VALUE']]['ELEMENTS'][] =  $catalogElement;
-                }
-                $result[$catalogElement['PROPERTY_UF_FIRM_VALUE']]['iii'][] = CIBlockElementRights::UserHasRightTo($catalogElement['IBLOCK_ID'], $catalogElement['ELEMENT_ID'], 'element_read', 4);
+        $elementsResult = $this->getElements();
+        $elementsResult->SetUrlTemplates($arParams['LINK_TEMPLATE']);
+        while ($catalogElement = $elementsResult->GetNext()){
+            if(in_array($catalogElement['PROPERTY_UF_FIRM_VALUE'], $arFirmID)){
+                $result['ELEMENTS_BY_FIRMS'][$catalogElement['PROPERTY_UF_FIRM_VALUE']][] =  $catalogElement;
             }
         }
 

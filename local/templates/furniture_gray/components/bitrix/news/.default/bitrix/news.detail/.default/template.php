@@ -15,6 +15,9 @@ $this->setFrameMode(true);
 <!--  -->
 <div class="news-detail">	
 	<?if($arParams['USE_AJAX'] === 'Y'):?>
+		<a class="ajax-report" href="#" onclick="return false;">ПОЖАЛОВАТЬСЯ НА НОВОСТЬ</a>
+		<br>
+		<span id="ajax-report-text"></span>
 		<!--  
 		<script>
 			

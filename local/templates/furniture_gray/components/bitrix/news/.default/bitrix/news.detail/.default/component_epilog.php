@@ -1,11 +1,10 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 if(isset($_GET['REPORT'])){
-    if(isset($_GET['SEND'])){
-        return;
-    }
 
     if($GLOBALS['USER']->IsAuthorized()){
-
+        $user = $USER->GetID() . " (" . $USER->GetLogin() . ") " . $USER->GetFullName();
+    } else {
+        $user = "Не авторизован";
     }
 
     $element = new CIBlockElement;
@@ -22,7 +21,9 @@ if(isset($_GET['REPORT'])){
     );
     $reportId = $element->Add($arFields);
     if($arParams['USE_AJAX'] === 'Y'){
+        $answer['ID'] = $reportId;
         $GLOBALS['APPLICATION']->RestartBuffer();
+        echo json_encode($answer);
         exit();
     } else {
         if(isset($reportId)){
@@ -30,9 +31,8 @@ if(isset($_GET['REPORT'])){
         } else {
             $text = 'Ошибка';
         }
-            $component = ob_get_contents();
-            ob_clean();
-            echo $text . $component;
-        return;
+        $component = ob_get_contents();
+        ob_clean();
+        echo $text . $component;
     }
 }

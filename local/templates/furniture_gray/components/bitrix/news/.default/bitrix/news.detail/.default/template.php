@@ -18,11 +18,6 @@ $this->setFrameMode(true);
 		<a class="ajax-report" href="#" onclick="return false;">ПОЖАЛОВАТЬСЯ НА НОВОСТЬ</a>
 		<br>
 		<span id="ajax-report-text"></span>
-		<!--  
-		<script>
-			
-		</script>
-		-->
 	<?else:?>
 		<a href="<?=$arResult['PAGE'] . '?REPORT=Y'?>"> ПОЖАЛОВАТЬСЯ НА НОВОСТЬ</a>
 	<?endif;?>

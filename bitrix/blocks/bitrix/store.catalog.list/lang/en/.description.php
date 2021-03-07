@@ -1,4 +1,0 @@
-<?
-$MESS["LD_BLOCK_STORE_CATALOG_SECTION_ID"] = "Category ID";
-$MESS["LD_BLOCK_STORE_CATALOG_LIST_NAME"] = "Products";
-?>

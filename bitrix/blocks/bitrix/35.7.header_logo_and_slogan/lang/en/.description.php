@@ -1,6 +1,0 @@
-<?
-$MESS["LANDING_BLOCK_35_7_HEADER--CONTAINER"] = "Block";
-$MESS["LANDING_BLOCK_35_7_HEADER--LOGO"] = "Logo";
-$MESS["LANDING_BLOCK_35_7_HEADER--NAME"] = "Header with logo and motto";
-$MESS["LANDING_BLOCK_35_7_HEADER--SLOGAN"] = "Motto";
-?>

@@ -1,4 +1,0 @@
-<?
-$MESS["LANDING_BLOCK_35.2.FOOTER_LIGHT__PRESET__LINK"] = "Contact link";
-$MESS["LANDING_BLOCK_35.2.FOOTER_LIGHT__PRESET__TEXT"] = "Contact text";
-?>

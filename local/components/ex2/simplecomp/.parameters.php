@@ -10,12 +10,10 @@ $arComponentParameters = array(
 			"NAME" => GetMessage("AUTHOR_CODE"),
 			"TYPE" => "STRING",
 		),
-		"CACHE_TIME"  =>  array("DEFAULT"=>36000000),
-		"CACHE_FILTER" => array(
-			"PARENT" => "CACHE_SETTINGS",
-			"NAME" => GetMessage("CACHE_FILTER"),
-			"TYPE" => "CHECKBOX",
-			"DEFAULT" => "N",
+		"AUTHOR_TYPE_CODE" => array(
+			"NAME" => GetMessage("AUTHOR_TYPE_CODE"),
+			"TYPE" => "STRING",
 		),
+		"CACHE_TIME"  =>  array("DEFAULT"=>36000000),
 	),
 );

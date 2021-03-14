@@ -27,7 +27,7 @@ class CSimpleComp extends CBitrixComponent
 			return;
 		}
 		$news = \Bitrix\Iblock\Elements\ElementNewsTable::getList([
-			'select' => ['ID', 'AUTHOR', 'NAME'],
+			'select' => ['ID', 'AUTHOR'],
 			'filter'  => array(
 				'ACTIVE' => 'Y',
 			), 

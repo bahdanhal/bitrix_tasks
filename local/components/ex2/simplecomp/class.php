@@ -62,13 +62,12 @@ class CSimpleComp extends CBitrixComponent
 				'AUTHOR.VALUE' => $arUsersID,
 			), 
 		])->fetchCollection();
-		$count = 0;
+		$count = count($news);
 		foreach ($news as $element)
 		{
 			foreach($element->getAuthor()->getAll() as $value){
 				$this->arResult['NEWS_BY_AUTHORS'][$value->getValue()][] = ['NAME' => $element->getName()];
 			}
-			$count++;
 		}
 		$this->arResult['NEWS_COUNT'] = $count;
 	}

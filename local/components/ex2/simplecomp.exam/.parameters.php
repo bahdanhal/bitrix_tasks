@@ -33,6 +33,12 @@ $arComponentParameters = array(
 			"TYPE" => "STRING",
 		),
 
+		"PAGE_COUNT" => array(
+			"NAME" => GetMessage("PAGE_COUNT"),
+			"TYPE" => "STRING",
+
+		),
+
 		"CACHE_TIME"  => Array(
 			"DEFAULT" => 36000000,
 		),

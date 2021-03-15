@@ -18,5 +18,8 @@
                         </ul>
                 <?php endforeach;?>
             <?php endforeach;?>
+            <?
+
+            ?>
 	    </ul>
     </div>

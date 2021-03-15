@@ -84,7 +84,20 @@ class ClassifiedProduction extends CBitrixComponent
                 $result['ELEMENTS_BY_FIRMS'][$catalogElement['PROPERTY_UF_FIRM_VALUE']][] =  $catalogElement;
             }
         }
-
+        if($GLOBALS['APPLICATION']->GetShowIncludeAreas())
+        {
+            $buttons = CIBlock::GetPanelButtons($arParams['CATALOG_IBLOCK_ID']);
+            $this->AddIncludeAreaIcons(
+                array(
+                    array(
+                        "ID" => "CATALOG_IBLOCK_ADMIN",
+                        "TITLE" => "ИБ в админке",
+                        "URL" => $arButtons['submenu']['element_list']['ACTION_URL'],
+                        "IN_PARAMS_MENU" => true, //показать в контекстном меню
+                    )
+                )
+            );
+        }
         $result['LINK'] = $GLOBALS['APPLICATION']->GetCurUri('F=Y');
         return $result;
     }

@@ -13,6 +13,18 @@ class ClassifiedProduction extends CBitrixComponent
         return true;
     }
 
+    private function getButtonLinks(&$element) {
+
+        $buttons = CIBlock::GetPanelButtons(
+            $element["IBLOCK_ID"],
+            $element["ID"]
+        );
+        $element["ADD_LINK"] = $buttons["edit"]["add_element"]["ACTION_URL"];
+        $element["EDIT_LINK"] = $buttons["edit"]["edit_element"]["ACTION_URL"];
+        $element["DELETE_LINK"] = $buttons["edit"]["delete_element"]["ACTION_URL"];
+
+    }
+
     private function getFirms()
     {
         $arFirmFilter = ['IBLOCK_ID' => $this->arParams['FIRM_IBLOCK_ID'], 
@@ -68,6 +80,7 @@ class ClassifiedProduction extends CBitrixComponent
         $elementsResult->SetUrlTemplates($arParams['LINK_TEMPLATE']);
         while ($catalogElement = $elementsResult->GetNext()){
             if(in_array($catalogElement['PROPERTY_UF_FIRM_VALUE'], $arFirmID)){
+                $this->getButtonLinks($catalogElement);
                 $result['ELEMENTS_BY_FIRMS'][$catalogElement['PROPERTY_UF_FIRM_VALUE']][] =  $catalogElement;
             }
         }

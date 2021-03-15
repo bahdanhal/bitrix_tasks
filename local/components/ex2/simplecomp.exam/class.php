@@ -55,7 +55,6 @@ class ClassifiedProduction extends CBitrixComponent
     }
     private function result()
     {
-        $this->modulesCheck();
         $firmList = $this->getFirms();
         while ($firm = $firmList->GetNext()){
 	        $arFirmID[] = $firm['ID'];
@@ -74,11 +73,12 @@ class ClassifiedProduction extends CBitrixComponent
         }
 
         $result['LINK'] = $GLOBALS['APPLICATION']->GetCurUri('F=Y');
-        return $result;            
+        return $result;
     }
 
     public function executeComponent()
     {
+        $this->modulesCheck();
         $this->filter = \Bitrix\Main\Application::getInstance()->getContext()->getRequest()->get('F');
         if(isset($this->filter)){
             $this->arResult = $this->result();    

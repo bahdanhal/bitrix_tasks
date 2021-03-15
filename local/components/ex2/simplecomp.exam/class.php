@@ -13,42 +13,15 @@ class ClassifiedProduction extends CBitrixComponent
 
     private function getFirms()
     {
-        
-        $nav = new \Bitrix\Main\UI\PageNavigation("nav");
-        $nav->allowAllRecords(true)
-            ->setPageSize($this->arParams['PAGE_COUNT'])
-            ->initFromUri();
         $arFirmFilter = [
             'IBLOCK_ID' => $this->arParams['FIRM_IBLOCK_ID'], 
             'CHECK_PERMISSIONS' => $this->arParams['CACHE_GROUPS'],
         ];
         $arFirmSelect = ['IBLOCK_ID', 'ID', 'NAME'];
         $arNavParams = [
-            "nPageSize" => $nav->getLimit(),
-            //"nElementID" => $nav->getOffset(),
+            "nPageSize" => $this->arParams['PAGE_COUNT'],
         ];
         $firmsList = CIBlockElement::GetList([], $arFirmFilter, false, $arNavParams, $arFirmSelect);
-
-        //$nav->setRecordCount(count($firmsList));
-       /*         
-        $GLOBALS['APPLICATION']->IncludeComponent(
-            "bitrix:main.pagenavigation",
-            ".default",
-            array(
-                "NAV_OBJECT" => $nav,
-                "SEF_MODE" => "Y",
-            ),
-            false
-        );*/
-        /*$GLOBALS['APPLICATION']->IncludeComponent(
-            'bitrix:system.pagenavigation',
-            '',
-            array(
-                'NAV_TITLE'   => 'Элементы', // поясняющий текст для постраничной навигации
-                'NAV_RESULT'  => $firmsList,  // результаты выборки из базы данных
-                'SHOW_ALWAYS' => true       // показывать постраничную навигацию всегда?
-            )
-        );*/
         $navString = $firmsList->GetPageNavString(
             'Элементы', // поясняющий текст
             'modern',   // имя шаблона

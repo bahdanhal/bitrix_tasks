@@ -8,7 +8,7 @@ $APPLICATION->SetTitle("simplecomp");
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
 		"CATALOG_IBLOCK_ID" => "2",
-		"FIRM_IBLOCK_ID" => "7",
+		"FIRM_IBLOCK_ID" => "5",
 		"COMPONENT_TEMPLATE" => ".default",
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",

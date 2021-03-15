@@ -28,7 +28,7 @@ class ClassifiedProduction extends CBitrixComponent
             'CHECK_PERMISSIONS' => $this->arParams['CACHE_GROUPS']
         ];
         $arElementSelect = ['IBLOCK_ID', 'ID', 'NAME', 'PROPERTY_PRICE', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_UF_FIRM', 'DETAIL_PAGE_URL'];
-        return CIBlockElement::GetList([], $arElementFilter, false, false, $arElementSelect);
+        return CIBlockElement::GetList(['NAME' => 'ASC', 'SORT' => 'ASC'], $arElementFilter, false, false, $arElementSelect);
     }
     private function result()
     {

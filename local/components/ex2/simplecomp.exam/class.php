@@ -13,7 +13,25 @@ class ClassifiedProduction extends CBitrixComponent
         return true;
     }
 
-    private function getButtonLinks(&$element) {
+    private function setMenu()
+    {
+        if($GLOBALS['APPLICATION']->GetShowIncludeAreas())
+        {
+            $url = "/bitrix/admin/iblock_element_admin.php?IBLOCK_ID=".$this->arParams['CATALOG_IBLOCK_ID']."&type=products";
+            $this->AddIncludeAreaIcons(
+                array(
+                    array(
+                        "ID" => "CATALOG_IBLOCK_ADMIN",
+                        "TITLE" => "ИБ в админке",
+                        "URL" => $url,
+                        "IN_PARAMS_MENU" => true,
+                    )
+                )
+            );
+        }   
+    }
+    private function getButtonLinks(&$element) 
+    {
 
         $buttons = CIBlock::GetPanelButtons(
             $element["IBLOCK_ID"],
@@ -77,27 +95,15 @@ class ClassifiedProduction extends CBitrixComponent
         $result['ELEMENTS_COUNT'] = $firmList->SelectedRowsCount();
 
         $elementsResult = $this->getElements();
-        $elementsResult->SetUrlTemplates($arParams['LINK_TEMPLATE']);
+        $elementsResult->SetUrlTemplates($this->arParams['LINK_TEMPLATE']);
         while ($catalogElement = $elementsResult->GetNext()){
             if(in_array($catalogElement['PROPERTY_UF_FIRM_VALUE'], $arFirmID)){
                 $this->getButtonLinks($catalogElement);
                 $result['ELEMENTS_BY_FIRMS'][$catalogElement['PROPERTY_UF_FIRM_VALUE']][] =  $catalogElement;
             }
         }
-        if($GLOBALS['APPLICATION']->GetShowIncludeAreas())
-        {
-            $buttons = CIBlock::GetPanelButtons($arParams['CATALOG_IBLOCK_ID']);
-            $this->AddIncludeAreaIcons(
-                array(
-                    array(
-                        "ID" => "CATALOG_IBLOCK_ADMIN",
-                        "TITLE" => "ИБ в админке",
-                        "URL" => $arButtons['submenu']['element_list']['ACTION_URL'],
-                        "IN_PARAMS_MENU" => true, //показать в контекстном меню
-                    )
-                )
-            );
-        }
+        
+        $this->setMenu();
         $result['LINK'] = $GLOBALS['APPLICATION']->GetCurUri('F=Y');
         return $result;
     }

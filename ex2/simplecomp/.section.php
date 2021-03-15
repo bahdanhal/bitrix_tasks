@@ -1,6 +1,0 @@
-<?
-$sSectionName = "simplecomp";
-$arDirProperties = Array(
-
-);
-?>

@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 	<div>
-		<h3> Разделов: <?=$arResult['ELEMENTS_COUNT'];?></h3>
+		<a href="<?=$arResult['LINK']?>"> Результат с фильтром </a>
 	    <ul>
             <?php foreach ($arResult['ELEMENTS_BY_FIRMS'] as $firm => $elements):?>   
                 <?php $info = '<b>' . $arResult['FIRMS'][$firm]['FIRM_NAME'] . '</b>';?>

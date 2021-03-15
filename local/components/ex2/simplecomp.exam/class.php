@@ -1,6 +1,8 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+<?
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 class ClassifiedProduction extends CBitrixComponent
 {
+    private $filter;
     private function modulesCheck()
     {
         if (!Bitrix\Main\Loader::includeModule("iblock")) 
@@ -22,16 +24,38 @@ class ClassifiedProduction extends CBitrixComponent
 
     private function getElements()
     {
-        $arElementFilter = ['IBLOCK_ID' => $this->arParams['CATALOG_IBLOCK_ID'], 
-            'ACTIVE' => 'Y', 
-            'UF_FIRM' => $arFirmID,
-            'CHECK_PERMISSIONS' => $this->arParams['CACHE_GROUPS']
-        ];
+        $arElementFilter = [];
+        if(isset($this->filter)){
+            $arElementFilter = [
+                'IBLOCK_ID' => $this->arParams['CATALOG_IBLOCK_ID'], 
+                'ACTIVE' => 'Y', 
+                'UF_FIRM' => $arFirmID,
+                'CHECK_PERMISSIONS' => $this->arParams['CACHE_GROUPS'],
+                array(
+                    "LOGIC" => "OR",
+                    array(
+                        "<=PROPERTY_PRICE" => 1700, 
+                        "=PROPERTY_MATERIAL" => "Дерево, ткань"
+                    ), 
+                    array(
+                        "<PROPERTY_PRICE" => "1500",
+                        "PROPERTY_MATERIAL" => "Металл, пластик"
+                    ),
+                ),
+            ]; 
+        } else {
+            $arElementFilter = ['IBLOCK_ID' => $this->arParams['CATALOG_IBLOCK_ID'], 
+                'ACTIVE' => 'Y', 
+                'UF_FIRM' => $arFirmID,
+                'CHECK_PERMISSIONS' => $this->arParams['CACHE_GROUPS']
+            ];
+        }
         $arElementSelect = ['IBLOCK_ID', 'ID', 'NAME', 'PROPERTY_PRICE', 'PROPERTY_MATERIAL', 'PROPERTY_ARTNUMBER', 'PROPERTY_UF_FIRM', 'DETAIL_PAGE_URL'];
         return CIBlockElement::GetList(['NAME' => 'ASC', 'SORT' => 'ASC'], $arElementFilter, false, false, $arElementSelect);
     }
     private function result()
     {
+        $this->modulesCheck();
         $firmList = $this->getFirms();
         while ($firm = $firmList->GetNext()){
 	        $arFirmID[] = $firm['ID'];
@@ -49,16 +73,22 @@ class ClassifiedProduction extends CBitrixComponent
             }
         }
 
+        $result['LINK'] = $GLOBALS['APPLICATION']->GetCurUri('F=Y');
         return $result;            
     }
 
     public function executeComponent()
     {
-        $this->modulesCheck();
-        if($this->startResultCache(false, array($GLOBALS['USER']->GetGroups()))){
-            $this->arResult = $this->result();
-            $this->SetResultCacheKeys(['ELEMENTS_COUNT']);
+        $this->filter = \Bitrix\Main\Application::getInstance()->getContext()->getRequest()->get('F');
+        if(isset($this->filter)){
+            $this->arResult = $this->result();    
             $this->IncludeComponentTemplate();
+        } else {
+            if($this->startResultCache(false, array($GLOBALS['USER']->GetGroups()))){
+                $this->arResult = $this->result();
+                $this->SetResultCacheKeys(['ELEMENTS_COUNT', 'LINK']);
+                $this->IncludeComponentTemplate();
+            }
         }
         $GLOBALS['APPLICATION']->SetTitle("Разделов: " . $this->arResult['ELEMENTS_COUNT']);
     }

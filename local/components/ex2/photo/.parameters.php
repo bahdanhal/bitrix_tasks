@@ -69,14 +69,8 @@ $arComponentParameters = array(
 		"VARIABLE_ALIASES" => Array(
 			"SECTION_ID" => Array("NAME" => GetMessage("SECTION_ID_DESC")),
 			"ELEMENT_ID" => Array("NAME" => GetMessage("ELEMENT_ID_DESC")),
-				
-			//Добавили переменные
-			//"PARAM1" => Array("NAME" => GetMessage("PARAM1")),
-			//"PARAM2" => Array("NAME" => GetMessage("PARAM2")),
-			//"PARAM3" => Array("NAME" => GetMessage("PARAM3")),
-			//"PARAM4" => Array("NAME" => GetMessage("PARAM4")),
-				
-				
+			"PARAM1" => Array("NAME" => "PARAM1"),
+			"PARAM2" => Array("NAME" => "PARAM2"),		
 		),
 		"SEF_MODE" => Array(
 			"sections_top" => array(
@@ -95,14 +89,11 @@ $arComponentParameters = array(
 				"VARIABLES" => array("ELEMENT_ID", "SECTION_ID"),
 			),
 				
-			//добавили новую страницу
-			//"exampage" => array(
-					//"NAME" => GetMessage("EXAM_PAGE"),
-					//DEFAULT
-					//VARIABLES
-			//),
-				
-				
+			"exampage" => array(
+				"NAME" => GetMessage("EXAM_PAGE"),
+				"DEFAULT" => "exam/new/#PARAM_1#/?PARAM_2=#PARAM_2#",
+				"VARIABLES" => array("PARAM_1", "PARAM_2"),
+			),
 		),
 		"IBLOCK_TYPE" => array(
 			"PARENT" => "BASE",

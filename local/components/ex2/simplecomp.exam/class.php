@@ -78,7 +78,7 @@ class ClassifiedProduction extends CBitrixComponent
         if($this->startResultCache(false, array($GLOBALS['USER']->GetGroups().$GLOBALS['APPLICATION']->getCurUri()))){
             $this->addCacheTag();
             $this->arResult = $this->result();
-            $this->SetResultCacheKeys(['ELEMENTS_COUNT']);
+            //$this->SetResultCacheKeys(['ELEMENTS_COUNT']);
             $this->IncludeComponentTemplate();
         }
         $GLOBALS['APPLICATION']->SetTitle("Разделов: " . $this->arResult['ELEMENTS_COUNT']);

@@ -48,6 +48,8 @@ class CounterAgent{
                 ),
             )); 
         }
-        return "Agents::CheckUserCount(\"".$date . "\", "."$usersCount".");";
+        return "CounterAgent::CheckUserCount(\"".$date . "\", "."$usersCount".");";
     }
 }
+//echo CounterAgent::CheckUserCount();
+//die();

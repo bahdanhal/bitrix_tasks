@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("time_control");
-?>Наибольшее время генерации страницы у /news/index.php - 0,4275. Её доля в общей статистике нагрузки - 16,04%<br>
+?>Наибольшее время генерации страницы у&nbsp;<a href="http://localhost2/bitrix/admin/perfmon_hit_list.php?lang=ru&set_filter=Y&find_script_name=%2Fproducts%2Findex.php">/products/index.php</a>&nbsp;-&nbsp;2.3725. Её доля в общей статистике нагрузки - 23.52%<br>
  <br>
-Размер кэша с вызовом setResultCacheKeys 4,37 КБ, без него 13,8 КБ<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+ На этой странице вызывается компонент bitrix.catalog. Его время работы 0.6773<br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

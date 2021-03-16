@@ -65,10 +65,18 @@ class ClassifiedProduction extends CBitrixComponent
         return $result;            
     }
 
+    private function addCacheTag()
+    {
+        if (defined('BX_COMP_MANAGED_CACHE') && is_object($GLOBALS['CACHE_MANAGER'])){
+            $GLOBALS['CACHE_MANAGER']->RegisterTag('iblock_'.$this->arParams['CACHE_DEPENDENCY_IBLOCK_ID']);   
+        }
+    }
+
     public function executeComponent()
     {
         $this->modulesCheck();
         if($this->startResultCache(false, array($GLOBALS['USER']->GetGroups().$GLOBALS['APPLICATION']->getCurUri()))){
+            $this->addCacheTag();
             $this->arResult = $this->result();
             $this->SetResultCacheKeys(['ELEMENTS_COUNT']);
             $this->IncludeComponentTemplate();

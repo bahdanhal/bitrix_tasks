@@ -27,6 +27,12 @@ $arComponentParameters = array(
 			"TYPE" => "STRING",
 
 		),
+		"CACHE_DEPENDENCY_IBLOCK_ID" => array(
+			"PARENT" => "IBLOCKS_SETTINGS",
+			"NAME" => GetMessage("CACHE_DEPENDENCY_IBLOCK_ID"),
+			"TYPE" => "STRING",
+
+		),
 		"FIRM_IBLOCK_ID" => array(
 			"PARENT" => "IBLOCKS_SETTINGS",
 			"NAME" => GetMessage("FIRM_IBLOCK_ID"),

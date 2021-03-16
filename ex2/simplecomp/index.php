@@ -13,7 +13,8 @@ $APPLICATION->SetTitle("simplecomp");
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",
 		"LINK_TEMPLATE" => "#SITE_DIR#/products/detail.php?ID=#ELEMENT_ID#",
-		"PAGE_COUNT" => "2"
+		"PAGE_COUNT" => "2",
+		"CACHE_DEPENDENCY_IBLOCK_ID" => "3"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

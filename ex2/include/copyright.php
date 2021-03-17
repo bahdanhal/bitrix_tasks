@@ -1,0 +1,1 @@
+<p>© 2001-2014 «Company name»</p><p>Address</p><p><b>Phone</b></p>

@@ -92,8 +92,25 @@ $APPLICATION->IncludeFile(
 		</div>
 		
 		<div id="content">
-		
 			<div id="sidebar">
+				<div class="content-block">
+					<div class="content-block-inner">
+						<h3><?=GetMessage('CFT_LANG_CANGE')?></h3>
+						<?$APPLICATION->IncludeComponent(
+	"bitrix:main.site.selector", 
+	"dropdown", 
+	array(
+		"SITE_LIST" => array(
+			0 => "*all*",
+		),
+		"CACHE_TYPE" => "A",
+		"CACHE_TIME" => "3600",
+		"COMPONENT_TEMPLATE" => "dropdown"
+	),
+	false
+);?>
+					</div>
+				</div>
 <?$APPLICATION->IncludeComponent("bitrix:menu", "left", array(
 	"ROOT_MENU_TYPE" => "left",
 	"MENU_CACHE_TYPE" => "A",
